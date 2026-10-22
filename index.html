@@ -1,0 +1,499 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#3b071b">
+
+  <title>Uma surpresa para você ❤️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #fff5f8;
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(ellipse at top, #771b40 0%, transparent 55%),
+        linear-gradient(145deg, #21030e, #4b0a27 55%, #20020d);
+    }
+
+    .fundo-coracoes {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .coracao {
+      position: absolute;
+      bottom: -50px;
+      color: #ff8db5;
+      opacity: 0;
+      text-shadow: 0 0 12px #ff4c8b;
+      animation: flutuar linear infinite;
+    }
+
+    @keyframes flutuar {
+      0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.65;
+      }
+      85% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-115vh) rotate(35deg);
+        opacity: 0;
+      }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      width: min(760px, calc(100% - 30px));
+      margin: auto;
+      padding: 45px 0 30px;
+      text-align: center;
+    }
+
+    .etiqueta {
+      display: inline-block;
+      padding: 8px 17px;
+      margin-bottom: 20px;
+      border: 1px solid #ffb2cc70;
+      border-radius: 30px;
+      background: #ffffff0c;
+      color: #ffd9e6;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      color: #fff0f5;
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.8rem, 9vw, 5rem);
+      line-height: 1.12;
+      text-shadow: 0 0 25px #ff5b9270;
+    }
+
+    .subtitulo {
+      max-width: 550px;
+      margin: 18px auto 30px;
+      color: #f6cbd9;
+      font-size: 0.97rem;
+      font-weight: 300;
+      line-height: 1.9;
+    }
+
+    .foto-container {
+      width: min(100%, 470px);
+      margin: 0 auto 30px;
+      padding: 10px;
+      border: 1px solid #ffb4ca80;
+      border-radius: 24px;
+      background: linear-gradient(145deg, #ffffff20, #ffffff05);
+      box-shadow: 0 15px 60px #00000040, 0 0 35px #ff5b9220;
+    }
+
+    .foto-container img {
+      display: block;
+      width: 100%;
+      max-height: 540px;
+      object-fit: contain;
+      border-radius: 16px;
+    }
+
+    .erro-foto {
+      display: none;
+      padding: 30px 15px;
+      color: #ffd6e4;
+      line-height: 1.8;
+    }
+
+    .legenda-foto {
+      margin-top: 12px;
+      color: #ffd6e3;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.7rem;
+    }
+
+    .frase {
+      margin: 30px auto;
+      padding: 24px 20px;
+      border-left: 3px solid #ff729f;
+      border-radius: 0 15px 15px 0;
+      background: #ffffff0a;
+      color: #ffe6ee;
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      line-height: 1.5;
+    }
+
+    .carta {
+      margin: 35px 0;
+      padding: clamp(22px, 5vw, 38px);
+      border: 1px solid #ffb6cc45;
+      border-radius: 22px;
+      background: #fff8fb0b;
+      text-align: left;
+    }
+
+    .carta h2,
+    .musica h2 {
+      margin-bottom: 22px;
+      color: #ffb4cb;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.6rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .carta p {
+      margin-bottom: 17px;
+      color: #f8dce6;
+      font-size: 0.96rem;
+      font-weight: 300;
+      line-height: 2;
+    }
+
+    .carta .assinatura {
+      padding-top: 5px;
+      color: #ffb7cd;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.9rem;
+      text-align: right;
+    }
+
+    .botao {
+      display: inline-block;
+      padding: 14px 25px;
+      border: none;
+      border-radius: 35px;
+      background: linear-gradient(135deg, #ff9abb, #e94e83);
+      color: #3b071b;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 7px 25px #f84e8c40;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .botao:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 35px #f84e8c70;
+    }
+
+    .surpresa {
+      display: none;
+      margin: 25px 0;
+      padding: 25px 15px;
+      border-radius: 18px;
+      background: #ffffff0c;
+    }
+
+    .surpresa.visivel {
+      display: block;
+      animation: aparecer 0.7s ease;
+    }
+
+    .mensagem-surpresa {
+      color: #ffe1eb;
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      line-height: 1.5;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .musica {
+      margin: 35px 0;
+      padding: 24px 15px;
+      border: 1px solid #ffb6cc40;
+      border-radius: 20px;
+      background: #ffffff08;
+    }
+
+    .musica h2 {
+      margin-bottom: 8px;
+      font-size: 2.3rem;
+    }
+
+    .musica p {
+      margin: 8px 0 17px;
+      color: #f5cbd9;
+      font-size: 0.9rem;
+    }
+
+    .player {
+      display: block;
+      width: 100%;
+      max-width: 420px;
+      height: 236px;
+      margin: auto;
+      border: 1px solid #ffb6cc40;
+      border-radius: 14px;
+      background: #16020b;
+    }
+
+    .musica .dica {
+      max-width: 430px;
+      margin: 13px auto 0;
+      color: #e8b9ca;
+      font-size: 0.78rem;
+      line-height: 1.7;
+    }
+
+    footer {
+      padding: 30px 10px 5px;
+      color: #e8b9ca;
+      font-size: 0.8rem;
+      line-height: 1.8;
+    }
+
+    .coracao-final {
+      display: block;
+      margin-bottom: 8px;
+      color: #ff82a8;
+      font-size: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding-top: 30px;
+      }
+
+      .carta p {
+        font-size: 0.91rem;
+      }
+
+      .player {
+        height: 210px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="fundo-coracoes" id="fundoCoracoes" aria-hidden="true"></div>
+
+  <main>
+    <div class="etiqueta">Feito com carinho ❤️</div>
+
+    <h1>Tem algo que eu queria te dizer...</h1>
+
+    <p class="subtitulo">
+      Algumas pessoas chegam de um jeito especial e, sem perceber,
+      deixam os nossos dias mais bonitos. Você é uma dessas pessoas.
+    </p>
+
+    <!-- FOTO DE VOCÊS: caminho corrigido -->
+    <div class="foto-container">
+      <img
+        id="fotoCasal"
+        src="./img/foto.jpeg"
+        alt="Uma lembrança especial de nós dois"
+      >
+
+      <div class="erro-foto" id="erroFoto">
+        Não foi possível carregar a foto. ❤️
+        Confira se o arquivo img/foto.jpeg existe.
+      </div>
+
+      <div class="legenda-foto">
+        Um momento que merece ser lembrado ✨
+      </div>
+    </div>
+
+    <div class="frase">
+      “Não sei o que o futuro reserva, mas conhecer você já tornou meus dias mais especiais.”
+    </div>
+
+    <section class="carta">
+      <h2>Uma cartinha para Sofya 💌</h2>
+
+      <p>Oiii,  ❤️</p>
+
+      <p>
+        Talvez eu não consiga colocar em palavras tudo o que sinto,
+        mas queria encontrar um jeito bonito de te contar que você
+        se tornou alguém muito especial para mim.
+      </p>
+
+      <p>
+        Gosto do seu jeito, do seu sorriso e da sensação boa que fica
+        quando estou perto de você. Às vezes, uma conversa simples
+        ou um momento ao seu lado já consegue melhorar o meu dia.
+      </p>
+
+      <p>
+        Não estou fazendo isso para te pressionar ou para esperar
+        alguma resposta. Só queria que você soubesse que existe
+        alguém que olha para você com muito carinho e que gosta
+        de conhecer cada pedacinho da pessoa que você é.
+      </p>
+
+      <p>
+        Não sei se um dia a vida vai escrever uma história bonita
+        entre nós dois. Mas, se isso acontecer, quero que seja
+        naturalmente, com sinceridade, respeito e vontade dos dois.
+      </p>
+
+      <p>
+        Por enquanto, só quero aproveitar a oportunidade de te
+        conhecer melhor e te lembrar de que você tem um lugar
+        especial nos meus pensamentos.
+      </p>
+
+      <p>
+        Fiz este cantinho pensando em você, escolhendo cada detalhe
+        com carinho. Espero que você consiga sentir um pouquinho
+        do carinho que coloquei aqui.
+      </p>
+
+      <p class="assinatura">
+        Com carinho, de alguém que gosta muito de você. Eu te amo muito ❤️
+      </p>
+    </section>
+
+    <button
+      class="botao"
+      id="botaoSurpresa"
+      type="button"
+      aria-expanded="false"
+      aria-controls="surpresa"
+    >
+      Clique aqui para uma surpresa 💗
+    </button>
+
+    <div class="surpresa" id="surpresa" aria-live="polite">
+      <p class="mensagem-surpresa">
+        Se eu pudesse escolher um lugar para estar agora,
+        seria em algum lugar onde eu pudesse ver esse seu sorriso. ❤️
+      </p>
+
+      <p style="margin-top: 15px; color: #f5cbd9;">
+        Obrigado por ser alguém tão especial.
+      </p>
+    </div>
+
+    <section class="musica">
+      <h2>Uma música para você 🎶</h2>
+
+      <p>Henrique &amp; Juliano — Até Você Voltar</p>
+
+      <iframe
+        class="player"
+        src="https://www.youtube.com/embed/jyPfJKM4CIA?autoplay=1&playsinline=1"
+        title="Até Você Voltar - Henrique e Juliano"
+        allow="autoplay; encrypted-media; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+
+      <p class="dica">
+        Se a música não começar sozinha, aperte o play.
+        Alguns navegadores bloqueiam a reprodução automática com som. ❤️
+      </p>
+    </section>
+
+    <footer>
+      <span class="coracao-final">♡</span>
+      Feito com carinho, pensando em você.
+      <br>
+      Às vezes, as palavras mais simples guardam os sentimentos mais bonitos.
+    </footer>
+  </main>
+
+  <script>
+    // Corações animados no fundo
+    const fundo = document.getElementById("fundoCoracoes");
+
+    for (let i = 0; i < 24; i++) {
+      const coracao = document.createElement("span");
+
+      coracao.className = "coracao";
+      coracao.textContent = Math.random() > 0.5 ? "♥" : "♡";
+      coracao.style.left = Math.random() * 100 + "%";
+      coracao.style.fontSize = (12 + Math.random() * 24) + "px";
+      coracao.style.animationDuration = (9 + Math.random() * 13) + "s";
+      coracao.style.animationDelay = (Math.random() * 15) + "s";
+
+      fundo.appendChild(coracao);
+    }
+
+    // Botão da surpresa
+    const botao = document.getElementById("botaoSurpresa");
+    const surpresa = document.getElementById("surpresa");
+
+    botao.addEventListener("click", function () {
+      const visivel = surpresa.classList.toggle("visivel");
+
+      botao.setAttribute("aria-expanded", String(visivel));
+      botao.textContent = visivel
+        ? "Fechar surpresa ❤️"
+        : "Clique aqui para uma surpresa 💗";
+
+      if (visivel) {
+        surpresa.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
+    });
+
+    // Verifica se a foto carregou
+    const foto = document.getElementById("fotoCasal");
+    const erroFoto = document.getElementById("erroFoto");
+
+    foto.addEventListener("error", function () {
+      foto.style.display = "none";
+      erroFoto.style.display = "block";
+    });
+
+    foto.addEventListener("load", function () {
+      foto.style.display = "block";
+      erroFoto.style.display = "none";
+    });
+  </script>
+</body>
+</html>
